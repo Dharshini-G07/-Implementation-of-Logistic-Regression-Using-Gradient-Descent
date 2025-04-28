@@ -9,33 +9,32 @@ To write a program to implement the the Logistic Regression Using Gradient Desce
 
 ## AlgorithmLoad the Dataset
 
-1.Load the Dataset
 
-2.Drop Irrelevant Columns (sl_no, salary)
+1.Load dataset: dataset = pd.read_csv('Placement_Data.csv')
 
-3.Convert Categorical Columns to Category Data Type
+2.Preprocess data: Drop irrelevant columns sl_no and salary.
 
-4.Encode Categorical Columns as Numeric Codes
+3.Convert categorical variables: Convert columns like gender, ssc_b, hsc_b, degree_t, workex, specialisation, status, hsc_s to numeric codes using astype('category').cat.codes.
 
-5.Split Dataset into Features (X) and Target (Y)
+4.Separate features and target: X = dataset.iloc[:, :-1].values, Y = dataset.iloc[:, -1].values.
 
-6.Initialize Model Parameters (theta) Randomly
+5.Initialize weights: theta = np.random.randn(X.shape[1]).
 
-7.Define Sigmoid Activation Function
+6.Implement sigmoid function: def sigmoid(z): return 1 / (1 + np.exp(-z)).
 
-8.Define Logistic Loss Function (Binary Cross-Entropy)
+7.Define loss function: def loss(theta, X, y): return -np.sum(y * np.log(sigmoid(X.dot(theta))) + (1 - y) * np.log(1 - sigmoid(X.dot(theta)))).
 
-9.Implement Gradient Descent to Minimize Loss
+8.Implement gradient descent: def gradient_descent(theta, X, y, alpha, num_iterations): theta -= alpha * X.T.dot(sigmoid(X.dot(theta)) - y) / len(y).
 
-10.Train the Model by Updating theta Iteratively
+9.Make predictions: y_pred = np.where(sigmoid(X.dot(theta)) >= 0.5, 1, 0).
 
-11.Define Prediction Function Using Threshold (0.5)
+10.Evaluate model: accuracy = np.mean(y_pred.flatten() == y).
 
-12.Predict Outcomes for Training Set
 
-13.Calculate and Display Accuracy
 
-14.Make Predictions on New Data Samples
+
+
+
 
 ## Program:
 ```
